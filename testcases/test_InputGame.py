@@ -25,6 +25,7 @@ class TestInputGame(BaseTest):
         #   Step2. Check input value
         try:
             self.page.fill_input()
+            self.logger.info("**************** Fill input ************")
         except Exception as e:
             self.logger.error(e)
             self.logger.error("************* Cannot Input *************")
@@ -33,10 +34,9 @@ class TestInputGame(BaseTest):
         #   Step3. Check Grade
         try:
             self.page.click_submit()
-            self.logger.info("************ Submitted ************")
+            self.logger.info("************ Submit ************")
             actual_location = self.page.get_position_of_grade()
-            if actual_location == TestData.GRADE_LOCATION:
-                assert True
+            assert actual_location == TestData.GRADE_LOCATION
         except AssertionError as e:
             test_passed_status = False
             self.logger.error("********* Grade not at the top right*********")
@@ -52,11 +52,11 @@ class TestInputGame(BaseTest):
 
         try:
             actual_grade_value = self.page.get_grade_value()
-            if actual_grade_value == 3:
-                assert True
+            assert actual_grade_value == 3
         except AssertionError as e:
             test_passed_status = False
-            self.logger.error("*********** Grade value wrong *******")
+            self.logger.error("*********** Grade value wrong *********")
+            self.logger.info(f"It showed {actual_grade_value}/10")
 
         if not test_passed_status:
             pytest.fail("Test Failed")
@@ -67,9 +67,8 @@ class TestInputGame(BaseTest):
         test_passed_status = True
         try:
             self.page = GameInputWorksheet(self.driver)
-            if self.page.is_page_loaded():
-                self.logger.info("*********** OpenWorksheet Successful **********")
             assert self.page.is_page_loaded()
+            self.logger.info("*********** OpenWorksheet Successful **********")
         except AssertionError as e:
             self.logger.error("********* Cant open work sheet *************")
             test_passed_status = False
@@ -79,12 +78,10 @@ class TestInputGame(BaseTest):
             self.page.click_submit()
             self.logger.info("********** Submitted ***********")
         except Exception as e:
-            self.logger.error(e)
             test_passed_status = False
+
         try:
             actual_location = self.page.get_position_of_grade()
-            if actual_location == TestData.GRADE_LOCATION:
-                assert True
         except AssertionError as e:
             test_passed_status = False
             self.logger.error("********* Grade not at the top right *********")
@@ -92,8 +89,7 @@ class TestInputGame(BaseTest):
         #     Step3. Check grade format
         try:
             actual_grade_color = self.page.get_grade_color()
-            if actual_grade_color == TestData.GRADE_COLOR:
-                assert True
+            assert actual_grade_color == TestData.GRADE_COLOR
         except AssertionError as e:
             test_passed_status = False
             self.logger.error("*********** Grade format not match *******")
@@ -101,11 +97,12 @@ class TestInputGame(BaseTest):
         try:
             actual_grade_value = self.page.get_grade_value()
             self.logger.info(actual_grade_value)
-            if actual_grade_value == 0:
-                assert True
+            assert actual_grade_value == 0
+            self.logger.info("******** Test pass ***********")
         except AssertionError as e:
             test_passed_status = False
             self.logger.error("*********** Grade value wrong *******")
+            self.logger.info(f"It showed {actual_grade_value}/10")
         if not test_passed_status:
             pytest.fail("Test failed")
 
@@ -114,10 +111,8 @@ class TestInputGame(BaseTest):
         test_passed_status = True
         try:
             self.page = GameInputWorksheet(self.driver)
-            if self.page.is_page_loaded():
-                self.logger.info("*********** OpenWorksheet Successful **********")
-            else:
-                assert self.page.is_page_loaded()
+            assert self.page.is_page_loaded()
+            self.logger.info("*********** OpenWorksheet Successful **********")
         except AssertionError as e:
             self.logger.error("********* Cant open work sheet *************")
             test_passed_status = False
@@ -136,6 +131,7 @@ class TestInputGame(BaseTest):
             self.logger.info(e)
             self.logger.error("********* Cant clear inputted value *************")
             test_passed_status = False
+            self.logger.info("******** Test pass *************")
         if not test_passed_status:
             pytest.fail("Test failed")
 
@@ -180,6 +176,8 @@ class TestInputGame(BaseTest):
             test_passed_status = False
         if not test_passed_status:
             pytest.fail("Test failed")
+        else:
+            self.logger.info("*********** Test pass ************")
 
     # Hide answer
     def test_hide_answer(self):
@@ -226,6 +224,8 @@ class TestInputGame(BaseTest):
 
         if not test_passed_status:
             pytest.fail("Test failed")
+        else:
+            self.logger.info("*********** Test pass ************")
 
     def test_try_again(self):
         test_passed_status = True
@@ -274,6 +274,9 @@ class TestInputGame(BaseTest):
 
         if not test_passed_status:
             pytest.fail("Test failed")
+        else:
+            self.logger.info("*********** Test pass ************")
+
 
 
 

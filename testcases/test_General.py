@@ -78,7 +78,6 @@ class TestGeneral(BaseTest):
                 assert self.preview_page.is_correct_location(
                     self.interactive_box_locations[i], TestData.INTERACTIVE_BOXES_LOCATION_PREVIEW_PAGE[i]
                 )
-            self.logger.info("** oke ****")
         except AssertionError:
             self.logger.error("************ Interactive box location in preview page not match *************")
             self.logger.info(self.interactive_box_location)

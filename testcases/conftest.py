@@ -7,7 +7,6 @@ from Config.config import TestData
 def init_driver(request):
     driver = webdriver.Chrome()
     request.cls.driver = driver
-    print("Launching Chrome browser....")
     driver.set_window_size(1920, 1080)
     driver.implicitly_wait(5)
     yield driver

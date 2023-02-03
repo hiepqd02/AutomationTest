@@ -51,7 +51,7 @@ class GameBase(BasePage):
 
     def get_grade_value(self):
         grade_value = self.get_grade_element().text[0]
-        return grade_value
+        return int(grade_value)
 
     def get_grade_color(self):
         grade_color = self.get_grade_element().value_of_css_property('color')

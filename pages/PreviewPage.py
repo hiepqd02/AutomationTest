@@ -22,6 +22,7 @@ class PreviewPage(BasePage):
 
     def click_play_now_button(self):
         self.do_lick(self.PLAY_NOW_BUTTON)
+        return Pla
 
     def click_customize_button(self):
         self.do_lick(self.CUSTOMIZE_BUTTON)
