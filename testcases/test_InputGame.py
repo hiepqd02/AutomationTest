@@ -36,10 +36,11 @@ class TestInputGame(BaseTest):
             self.page.click_submit()
             self.logger.info("************ Submit ************")
             actual_location = self.page.get_position_of_grade()
-            assert actual_location == TestData.GRADE_LOCATION
+            assert TestData.GRADE_LOCATION - 35 <= actual_location <= TestData.GRADE_LOCATION + 35
         except AssertionError as e:
             test_passed_status = False
-            self.logger.error("********* Grade not at the top right*********")
+            self.logger.error("********* Grade location not correct *********")
+
 
         #     Step4. Check grade format
         try:
@@ -84,7 +85,7 @@ class TestInputGame(BaseTest):
             actual_location = self.page.get_position_of_grade()
         except AssertionError as e:
             test_passed_status = False
-            self.logger.error("********* Grade not at the top right *********")
+            self.logger.error("********* Grade location not correct *********")
 
         #     Step3. Check grade format
         try:

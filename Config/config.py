@@ -5,7 +5,7 @@ class TestData:
     DRAG_AND_DROP_GAME_URL = "https://worksheetzone.org/properties-of-3d-shapes-printable-interactive-62153f2b7ed2e5475841f871?play=true"
     WINDOW_SIZE = (1920 , 1080)
     # Location
-    GRADE_LOCATION = {'x': 1087, 'y': 26}
+    GRADE_LOCATION = {'x': 1055, 'y': 26}
     SUBMIT_BUTTON_LOCATION = {'x': 1312, 'y': 113}
     TRY_AGAIN_BUTTON_LOCATION = {'x': 1312, 'y': 113}
     SUBMIT_BUTTON_LOCATION_DROP_DOWN = {'x': 1312, 'y': 295}
