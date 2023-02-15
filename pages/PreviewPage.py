@@ -21,8 +21,15 @@ class PreviewPage(BasePage):
         driver.get(TestData.PREVIEW_PAGE_URL)
 
     def click_play_now_button(self):
+        class PlayPage(GameInputWorksheet):
+            def __init__(self, driver):
+                super().__init__(driver)
+
+            def open_ws(self):
+                pass
+
         self.do_lick(self.PLAY_NOW_BUTTON)
-        return Pla
+        return PlayPage(self.driver)
 
     def click_customize_button(self):
         self.do_lick(self.CUSTOMIZE_BUTTON)
@@ -34,6 +41,3 @@ class PreviewPage(BasePage):
         for interactive_box in interactive_boxes:
             interactive_box_location.append(interactive_box.location)
         return interactive_box_location
-
-
-

@@ -1,9 +1,17 @@
 class TestData:
+    HOME_PAGE_URL = "https://worksheetzone.org"
     INPUT_GAME_URL = "https://worksheetzone.org/halloween-math-doubles-near-doubles-printable-interactive-62179c902a67a2211017d12d?play=true"
     CONNECT_GAME_URL = "https://worksheetzone.org/math-add-printable-interactive-621e503c0dd4a0384c50ca33?play=true"
     PREVIEW_PAGE_URL = "https://worksheetzone.org/halloween-math-doubles-near-doubles-printable-interactive-62179c902a67a2211017d12d?"
     DRAG_AND_DROP_GAME_URL = "https://worksheetzone.org/properties-of-3d-shapes-printable-interactive-62153f2b7ed2e5475841f871?play=true"
-    WINDOW_SIZE = (1920 , 1080)
+
+    CREATE_WORKSHEET_URL = "https://worksheetzone.org/create-worksheet/?utm_medium=header_button&start_mode=0"
+    PATH_TO_TEST_FILE = "/home/tdhpisme/test_pic.jpg"
+
+    EMAIL_USERNAME = "abc.automationtest@gmail.com"
+    EMAIL_PWD = "abcelearning2023"
+
+    WINDOW_SIZE = (1920, 1080)
     # Location
     GRADE_LOCATION = {'x': 1055, 'y': 26}
     SUBMIT_BUTTON_LOCATION = {'x': 1312, 'y': 113}

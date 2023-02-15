@@ -3,6 +3,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.keys import Keys
+from selenium import webdriver
 
 
 
@@ -54,7 +55,12 @@ class BasePage:
         action = ActionChains(self.driver)
         action.drag_and_drop_by_offset(element, x, y).perform()
 
+    def printCurrentURL(self):
+        print(self.driver.current_url)
 
+    def switchTab(self, tab_index):
+        handles = self.driver.window_handles
+        self.driver.switch_to.window(handles[tab_index])
 
 
 

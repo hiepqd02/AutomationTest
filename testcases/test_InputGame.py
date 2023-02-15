@@ -38,6 +38,7 @@ class TestInputGame(BaseTest):
             self.logger.info("************ Submit ************")
             actual_location = self.page.get_position_of_grade()
             assert TestData.GRADE_LOCATION['x'] - 35 <= actual_location['x'] <= TestData.GRADE_LOCATION['x'] + 35 and TestData.GRADE_LOCATION['y'] - 35 <= actual_location['y'] <= TestData.GRADE_LOCATION['y'] + 35
+
         except AssertionError as e:
             test_passed_status = False
             self.logger.error("********* Grade location not correct *********")

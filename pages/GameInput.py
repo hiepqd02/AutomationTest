@@ -11,7 +11,10 @@ class GameInputWorksheet(GameBase):
 
     def __init__(self, driver):
         super().__init__(driver)
-        driver.get(TestData.INPUT_GAME_URL)
+        self.open_ws()
+
+    def open_ws(self):
+        self.driver.get(TestData.INPUT_GAME_URL)
 
     def get_input_boxes(self):
         return self.driver.find_elements(*self.INPUT_BOX)
@@ -27,6 +30,9 @@ class GameInputWorksheet(GameBase):
         inputed_boxes[1].clear()
         inputed_boxes[2].clear()
         inputed_boxes[3].clear()
+
+    def get_interactive_box_location(self):
+        s
 
 
 

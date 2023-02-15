@@ -1,4 +1,3 @@
-
 import pytest
 from Config.config import TestData
 from testcases.test_base import BaseTest
@@ -54,7 +53,8 @@ class TestGeneral(BaseTest):
                 self.try_again_btn_drop_down_location, TestData.SUBMIT_BUTTON_LOCATION_DROP_DOWN
             )
         except AssertionError:
-            self.logger.error("************ Try again button location after click three dot btn not match *************")
+            self.logger.error(
+                "************ Try again button location after click three dot btn not match *************")
             self.logger.info(self.try_again_btn_drop_down_location)
             test_passed_flag = False
 
@@ -84,7 +84,7 @@ class TestGeneral(BaseTest):
             test_passed_flag = False
 
         try:
-            self.preview_page.click_play_now_button()
+            self.play_page = self.preview_page.click_play_now_button()
         except Exception as e:
             self.logger.error(e)
             self.logger.error("************ Cannot open play page *************")
@@ -98,5 +98,4 @@ class TestGeneral(BaseTest):
             self.logger.info(interactive_boxes_location_play_page)
 
         if not test_passed_flag:
-                pytest.fail("************** Test failed ************")
-
+            pytest.fail("************** Test failed ************")
