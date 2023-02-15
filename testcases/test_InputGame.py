@@ -137,6 +137,8 @@ class TestInputGame(BaseTest):
             self.logger.info("******** Test pass *************")
         if not test_passed_status:
             pytest.fail("Test failed")
+        else:
+            self.logger.info("************* Test pass ***********")
 
     # 4. Show answer
     def test_show_answer(self):
@@ -244,6 +246,7 @@ class TestInputGame(BaseTest):
 
         try:
             self.page.click_submit()
+            self.logger.info("********* Submit ************")
             try_again_button = self.page.get_try_again_button()
             assert bool(try_again_button)
         except AssertionError:
@@ -261,6 +264,7 @@ class TestInputGame(BaseTest):
         try:
             self.page.escape()
             self.page.click_try_again_button()
+            self.logger.info("************* Click try again button ***********")
             submit_button = self.page.get_submit_button()
             assert bool(submit_button)
         except AssertionError:
