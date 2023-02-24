@@ -19,6 +19,8 @@ class CreateWorksheetPage(BasePage):
     EXAMPLE_TEMPLATE = (By.CSS_SELECTOR, ".template-resource-item:nth-child(1)")
     MESSAGE_BAR = (By.CSS_SELECTOR, "#app > div.MuiSnackbar-root.MuiSnackbar-anchorOriginBottomCenter.css-1ozswge")
 
+    SAVE_POP_UP = (By.CSS_SELECTOR, "div.MuiDialog-root.popup-save-worksheet")
+
 
     # SAVE_POPUP_CONTAINER
     WS_NAME = (By.CSS_SELECTOR, "input#ws-name")
@@ -43,7 +45,7 @@ class CreateWorksheetPage(BasePage):
         upload_button = self.driver.find_element(*self.UPLOAD_IMAGE_BUTTON)
         upload_button.send_keys(TestData.PATH_TO_TEST_FILE)
         WebDriverWait(self.driver, 20).until(
-            EC.visibility_of_element_located((By.CSS_SELECTOR, ".switch-button-eraser"))
+            EC.visibility_of_element_located((By.CSS_SELECTOR, ".canvas-container-0"))
         )
 
     def get_red_save_button(self):
@@ -65,9 +67,22 @@ class CreateWorksheetPage(BasePage):
 
     def pick_a_template(self):
         self.driver.find_element(*self.EXAMPLE_TEMPLATE).click()
+        WebDriverWait(self.driver, 20).until(
+            EC.visibility_of_element_located((By.CSS_SELECTOR, ".canvas-container-0"))
+        )
 
     def get_the_message_bar(self):
         return self.driver.find_element(*self.MESSAGE_BAR)
+
+    def get_save_pop_up(self):
+        return WebDriverWait(self.driver, 10).until(
+            EC.visibility_of_element_located(self.SAVE_POP_UP)
+        )
+
+    def get_shared_popup(self):
+        return WebDriverWait(self.driver, 20).until(
+            EC.visibility_of_element_located(self.SHARE_POPUP_CONTAINER)
+        )
 
 
 

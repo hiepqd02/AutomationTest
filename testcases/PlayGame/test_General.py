@@ -16,7 +16,7 @@ class TestGeneral(BaseTest):
         try:
             self.play_page = GameInputWorksheet(self.driver)
             assert self.play_page.is_page_loaded()
-            self.logger.info("*********** OpenWorksheet Successful **********")
+            self.logger.info("*********** Input Game **********")
         except Exception as e:
             self.logger.error("********** Cant open worksheet *********")
             test_passed_flag = False
@@ -31,11 +31,12 @@ class TestGeneral(BaseTest):
 
         try:
             self.play_page.click_submit()
+            self.logger.info("****** Submit *******")
             try_again_button = self.play_page.get_try_again_button()
             assert bool(try_again_button)
         except AssertionError:
             self.logger.error("*********** Submit button not change to try again ********")
-            test_passed_status = False
+            test_passed_flag = False
 
         try:
             self.try_again_button_location = self.play_page.get_try_again_button_location()
@@ -60,6 +61,8 @@ class TestGeneral(BaseTest):
 
         if not test_passed_flag:
             pytest.fail("************** Test failed ************")
+        else:
+            self.logger.info("******** Test pass *********")
 
     # 5
     def test_interactive_box_location(self):
@@ -67,7 +70,7 @@ class TestGeneral(BaseTest):
         try:
             self.preview_page = PreviewPage(self.driver)
             assert self.preview_page.is_page_loaded()
-            self.logger.info("*********** Open preview page Successful **********")
+            self.logger.info("*********** PreviewPage **********")
         except AssertionError as e:
             self.logger.error("************** Cant open worksheet ****************")
             test_passed_flag = False
@@ -85,6 +88,7 @@ class TestGeneral(BaseTest):
 
         try:
             self.play_page = self.preview_page.click_play_now_button()
+            self.logger.info("****** Open play page *******")
         except Exception as e:
             self.logger.error(e)
             self.logger.error("************ Cannot open play page *************")
@@ -92,10 +96,16 @@ class TestGeneral(BaseTest):
 
         try:
             interactive_boxes_location_play_page = self.play_page.get_interactive_box_location()
-            assert interactive_boxes_location_play_page == TestData.INTERACTIVE_BOXES_LOCATION_PLAY_PAGE
+            for i in range(len(interactive_boxes_location_play_page)):
+                assert self.play_page.is_correct_location(
+                    interactive_boxes_location_play_page[i], TestData.INTERACTIVE_BOXES_LOCATION_PLAY_PAGE[i]
+                )
         except AssertionError:
             self.logger.error("*********** Interactive box location in play page not match ********")
             self.logger.info(interactive_boxes_location_play_page)
+            test_passed_flag = False
 
         if not test_passed_flag:
             pytest.fail("************** Test failed ************")
+        else:
+            self.logger.info("****** Test pass ******")

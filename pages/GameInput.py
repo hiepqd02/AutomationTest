@@ -32,8 +32,11 @@ class GameInputWorksheet(GameBase):
         inputed_boxes[3].clear()
 
     def get_interactive_box_location(self):
-        s
-
+        locations = []
+        input_boxes = self.get_input_boxes()
+        for i in input_boxes:
+            locations.append(i.location)
+        return locations
 
 
 
