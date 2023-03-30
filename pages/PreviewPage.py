@@ -1,3 +1,5 @@
+import time
+
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -18,7 +20,9 @@ class PreviewPage(BasePage):
 
     def __init__(self, driver):
         super().__init__(driver)
-        driver.get(TestData.PREVIEW_PAGE_URL)
+
+    def open_browser(self):
+        self.driver.get(TestData.PREVIEW_PAGE_URL)
 
     def click_play_now_button(self):
         class PlayPage(GameInputWorksheet):

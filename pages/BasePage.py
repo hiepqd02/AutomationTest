@@ -62,6 +62,12 @@ class BasePage:
         handles = self.driver.window_handles
         self.driver.switch_to.window(handles[tab_index])
 
+    def hover(self, element):
+        action = ActionChains(self.driver)
+        action.move_to_element(element)
+
+
+
 
 
 

@@ -1,10 +1,13 @@
 import pytest
 from selenium import webdriver
 from Config.config import TestData
+from selenium.webdriver.chrome.options import Options
 
 
 @pytest.fixture()
 def init_driver(request):
+    chrome_options = Options()
+    chrome_options.add_argument("--headless")
     driver = webdriver.Chrome()
     request.cls.driver = driver
     driver.set_window_size(1920, 1080)
@@ -21,7 +24,7 @@ def pytest_runtest_makereport(item, call):
     extra = getattr(report, "extra", [])
     if report.when == "call":
         # always add url to report
-        extra.append(pytest_html.extras.url("http://www.worksheetzone.org/"))
+        extra.append(pytest_html.extras.url("http://worksheetzone.org/"))
         xfail = hasattr(report, "wasxfail")
         if (report.skipped and xfail) or (report.failed and not xfail):
             # only add additional html on failure

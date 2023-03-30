@@ -13,10 +13,10 @@ class TestData:
 
     WINDOW_SIZE = (1920, 1080)
     # Location
-    GRADE_LOCATION = {'x': 1055, 'y': 26}
+    GRADE_LOCATION = {'x': 1087, 'y': 42}
     SUBMIT_BUTTON_LOCATION = {'x': 610, 'y': 828}
-    TRY_AGAIN_BUTTON_LOCATION = {'x': 1312, 'y': 113}
-    SUBMIT_BUTTON_LOCATION_DROP_DOWN = {'x': 1312, 'y': 502}
+    TRY_AGAIN_BUTTON_LOCATION = {'x': 1312, 'y': 451}
+    SUBMIT_BUTTON_LOCATION_DROP_DOWN = {'x': 1312, 'y': 522}
     INTERACTIVE_BOXES_LOCATION_PREVIEW_PAGE = [{'x': 474, 'y': 135},
                                                {'x': 458, 'y': 414},
                                                {'x': 644, 'y': 414},

@@ -1,5 +1,6 @@
 import time
 
+from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -20,7 +21,7 @@ class CreateWorksheetPage(BasePage):
     MESSAGE_BAR = (By.CSS_SELECTOR, "#app > div.MuiSnackbar-root.MuiSnackbar-anchorOriginBottomCenter.css-1ozswge")
 
     SAVE_POP_UP = (By.CSS_SELECTOR, "div.MuiDialog-root.popup-save-worksheet")
-
+    UNDO_REDO_BUTTON = (By.CSS_SELECTOR, "div.undo-redo-button")
 
     # SAVE_POPUP_CONTAINER
     WS_NAME = (By.CSS_SELECTOR, "input#ws-name")
@@ -31,9 +32,23 @@ class CreateWorksheetPage(BasePage):
     # # Login
     USER = (By.CSS_SELECTOR, ".user")
 
+    # Zoom
+    ZOOM_BUTTON = (By.CSS_SELECTOR, )
+    ZOOM_PANEL = (By.CSS_SELECTOR, "zoom-panel")
+    ZOOM_VALUE_ITEM = {45: (By.CSS_SELECTOR, "div.zoom-panel > div:nth-child(1)"),
+                       200: (By.CSS_SELECTOR, "div.zoom-panel > div:nth-child(7)")}
+
+    # Add Page
+    ADD_PAGE_BUTTON = (By.CSS_SELECTOR, ".add-page")
+    ADD_PAGE_ICON = (By.CSS_SELECTOR, "div.action-panel-container > div > div > div:nth-child(7)")
+
+    # Scroll
+    SCROLL_TO_TOP_BUTTON = (By.CSS_SELECTOR, ".scroll-to-top-button")
+
+
+
     def __init__(self, driver):
         super().__init__(driver)
-        self.open_browser()
 
     def open_browser(self):
         self.driver.get(TestData.CREATE_WORKSHEET_URL)
@@ -83,6 +98,52 @@ class CreateWorksheetPage(BasePage):
         return WebDriverWait(self.driver, 20).until(
             EC.visibility_of_element_located(self.SHARE_POPUP_CONTAINER)
         )
+
+    def get_undo_redo_btn(self):
+        return self.driver.find_elements(*self.UNDO_REDO_BUTTON)
+
+    def undo_redo_btn(self, action, btn):
+        undo_redo_btn = self.get_undo_redo_btn()
+        undo_btn = undo_redo_btn[0]
+        redo_btn = undo_redo_btn[1]
+        action_chains = ActionChains(self.driver)
+
+        if action == "hover":
+            if btn == "redo":
+                action_chains.move_to_element(redo_btn).perform()
+            else:
+                action_chains.move_to_element(undo_btn).perform()
+        else:
+            redo_btn.click() if btn == "redo" else undo_btn.click()
+
+    def change_ws_size(self, size):
+        arrow = self.driver.find_element(By.CSS_SELECTOR, "div.zoom-value-container > img")
+        arrow.click()
+        self.driver.find_element(*self.ZOOM_VALUE_ITEM[size]).click()
+
+    def add_page_with_button(self):
+        add_page_btn = self.driver.find_element(*self.ADD_PAGE_BUTTON)
+        add_page_btn.click()
+
+    def add_page_with_icon(self):
+        add_page_icon = self.driver.find_element(*self.ADD_PAGE_ICON)
+        add_page_icon.click()
+
+    def scroll_to_bottom(self):
+        self.driver.execute_script("let element = document.getElementsByClassName('simplebar-content-wrapper')[0];"
+                                   "element.scroll({ top: element.scrollHeight, behavior: 'smooth' });")
+
+    def get_scroll_to_top_button(self):
+        return self.driver.find_element(*self.SCROLL_TO_TOP_BUTTON)
+
+    def click_scroll_to_top_button(self):
+        btn = self.get_scroll_to_top_button()
+        btn.click()
+
+
+
+
+
 
 
 

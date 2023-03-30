@@ -12,12 +12,11 @@ class TestSendEmail(BaseTest):
         pytest.skip()
 
     def test_send_email(self):
-        pytest.skip()
         test_passed_status = True
         try:
             self.page = GameInputWorksheet(self.driver)
             if self.page.is_page_loaded():
-                self.logger.info("*********** OpenWorksheet Successful **********")
+                self.logger.info("*********** Open worksheet **********")
             else:
                 assert self.page.is_page_loaded()
         except AssertionError as e:

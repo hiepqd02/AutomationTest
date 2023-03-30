@@ -5,6 +5,7 @@ from selenium.webdriver.support.ui import Select
 from Config.config import TestData
 from pages.BasePage import BasePage
 from pages.CreateWorksheetPage import CreateWorksheetPage
+from pages.PreviewPage import PreviewPage
 
 
 class HomePage(BasePage):
@@ -15,6 +16,7 @@ class HomePage(BasePage):
 
     CREATE_WORKSHEET_BUTTON = (By.CSS_SELECTOR, ".cta-header.create-worksheet-header")
     GET_STARTED_BTN = (By.CSS_SELECTOR, ".btn-get-started")
+    FIRST_WORKSHEET = (By.CSS_SELECTOR, "div.data-grid-item.data-worksheet.user")
 
     def __init__(self, driver):
         super().__init__(driver)
@@ -49,3 +51,24 @@ class HomePage(BasePage):
                 pass
 
         return CreateWs(self.driver)
+
+    def select_worksheet(self):
+        class AnyPreviewPage(PreviewPage):
+            def __init__(self, driver):
+                super().__init__(driver)
+
+            def open_ws(self):
+                pass
+        ws = self.driver.find_element(*self.FIRST_WORKSHEET)
+        ws.click()
+        return AnyPreviewPage(self.driver)
+
+
+
+
+
+
+
+
+
+
